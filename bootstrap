@@ -22,7 +22,7 @@ sysctl -p
 /etc/init.d/redis-server restart
 
 # Install and configure elasticsearch
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.3.deb -O /tmp/elasticsearch.deb
+curl -LO https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.7.deb -o /tmp/elasticsearch.deb
 dpkg -i /tmp/elasticsearch.deb
 rm /tmp/elasticsearch.deb
 
@@ -35,7 +35,7 @@ rm /tmp/elasticsearch.deb
 # Logstash is just a jar and requires some additional configs
 LOGHOME=/etc/logstash
 mkdir $LOGHOME && pushd $LOGHOME
-wget https://logstash.objects.dreamhost.com/release/logstash-1.2.0-flatjar.jar -O logstash.jar
+curl -LO https://logstash.objects.dreamhost.com/release/logstash-1.2.0-flatjar.jar -o logstash.jar
 cp $ROOT/conf/indexer.conf .
 cp $ROOT/init/logstash.conf /etc/init/
 mkdir /var/lib/logstash # Required working directory for logstash
@@ -44,7 +44,7 @@ popd
 
 # Install and configure the Kibana frontend
 pushd /opt/
-wget http://download.elasticsearch.org/kibana/kibana/kibana-latest.zip
+curl -LO http://download.elasticsearch.org/kibana/kibana/kibana-latest.zip
 unzip kibana-latest.zip
 mv kibana-latest kibana
 pushd kibana
